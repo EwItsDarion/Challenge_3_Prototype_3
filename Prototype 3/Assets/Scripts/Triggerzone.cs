@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/* Darion Jeffries
+ * Triggerzone
+ * Prototype 3
+ * Adds to score if in trigger zone
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

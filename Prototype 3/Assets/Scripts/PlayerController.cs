@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/* Darion Jeffries
+ * PlayerController
+ * Prototype 3
+ * Adds controls to player
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

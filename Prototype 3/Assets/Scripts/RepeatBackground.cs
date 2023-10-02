@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/* Darion Jeffries
+ * RepeatBackground
+ * Prototype 3
+ * Repeats the background
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

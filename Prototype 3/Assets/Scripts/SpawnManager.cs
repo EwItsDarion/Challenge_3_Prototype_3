@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/* Darion Jeffries
+ * SpawnManager
+ * Prototype 3
+ * Manages spawn rates
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
