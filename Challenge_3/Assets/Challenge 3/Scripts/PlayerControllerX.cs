@@ -1,14 +1,27 @@
-﻿using System.Collections;
+﻿/* Darion Jeffries
+ * PlayerControllerX
+ * Challenge 3
+ * Adds controls to player
+ */
+using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerControllerX : MonoBehaviour
 {
-    public bool gameOver;
+    public ScoreManager scoreManager;
+    public bool gameOver = false;
+   
 
+    public ForceMode jumpForceMode;
     public float floatForce;
-    private float gravityModifier = 1.5f;
+    private float gravityModifier = 1.7f;
     private Rigidbody playerRb;
+    public bool isOnGround = false;
+    public bool isTooHigh = false;
+    
 
     public ParticleSystem explosionParticle;
     public ParticleSystem fireworksParticle;
@@ -21,6 +34,8 @@ public class PlayerControllerX : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerRb = GetComponent<Rigidbody>();
+        jumpForceMode = ForceMode.Impulse;
         if (Physics.gravity.y > -10)
         {
             Physics.gravity *= gravityModifier;
@@ -36,16 +51,34 @@ public class PlayerControllerX : MonoBehaviour
     void Update()
     {
         // While space is pressed and player is low enough, float up
-        if (Input.GetKeyDown(KeyCode.Space) && !gameOver)
+        if (Input.GetKeyDown(KeyCode.Space) && !gameOver && !isTooHigh)
         {
-            playerRb.AddForce(Vector3.up * floatForce);
+            playerRb.AddForce(Vector3.up * floatForce, jumpForceMode);
+            
+        }
+        if (transform.position.y >= 16)
+        {
+            isTooHigh = true;
+        }
+        if (transform.position.y < 16)
+        {
+            isTooHigh = false;
         }
     }
 
     private void OnCollisionEnter(Collision other)
     {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            isOnGround = true;
+            playerRb.AddForce(Vector3.up * floatForce, jumpForceMode);
+        }
+        else
+        {
+            isOnGround = false;
+        }
         // if player collides with bomb, explode and set gameOver to true
-        if (other.gameObject.CompareTag("Bomb"))
+        if (other.gameObject.CompareTag("Obstacle"))
         {
             explosionParticle.Play();
             playerAudio.PlayOneShot(explodeSound, 1.0f);

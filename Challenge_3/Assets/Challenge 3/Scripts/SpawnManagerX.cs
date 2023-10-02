@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/* Darion Jeffries
+ * SpawnManagerX
+ * Challenge 3
+ * Manages spawnrates
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,16 +18,22 @@ public class SpawnManagerX : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("PrawnsObject", spawnDelay, spawnInterval);
-        playerControllerScript = GameObject.Find("Player").GetComponent<PlayerControllerX>();
+        if (playerControllerScript.gameOver == false)
+        {
+            InvokeRepeating("SpawnObstacle", spawnDelay, spawnInterval);
+        }
+            playerControllerScript = GameObject.Find("Player").GetComponent<PlayerControllerX>();
+        
     }
 
+
     // Spawn obstacles
-    void SpawnObjects ()
+    void SpawnObstacle ()
     {
         // Set random spawn location and random object index
-        Vector3 spawnLocation = new Vector3(30, Random.Range(5, 15), 0);
+        Vector3 spawnLocation = new Vector3(-30, Random.Range(1, 15), 0);
         int index = Random.Range(0, objectPrefabs.Length);
+        print(objectPrefabs.Length);
 
         // If game is still active, spawn new object
         if (!playerControllerScript.gameOver)

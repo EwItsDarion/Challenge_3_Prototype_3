@@ -1,4 +1,9 @@
-﻿using System;
+﻿/* Darion Jeffries
+ * MoveLeftX
+ * Challenge 3
+ * Makes objects move left
+ */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +12,7 @@ public class MoveLeftX : MonoBehaviour
 {
     public float speed = 30f;
     private PlayerControllerX playerControllerScript;
-    private float leftBound = 30;
+    private float leftBound = 60f;
      
 
     // Start is called before the first frame update
@@ -20,19 +25,22 @@ public class MoveLeftX : MonoBehaviour
     void Update()
     {
         // If game is not over, move to the left
-        if (playerControllerScript.gameOver == false)
+        if (!playerControllerScript.gameOver)
         {
             transform.Translate(Vector3.right * Time.deltaTime * speed);
         }
-
+       
         // If object goes off screen that is NOT the background, destroy it
-        if (transform.position.x > leftBound && !gameObject.CompareTag("Obstacle"))
+        if (transform.position.x > leftBound && gameObject.CompareTag("Obstacle"))
         {
             Destroy(gameObject);
+            print("Destroyed Bomb");
         }
-        if (transform.position.x > leftBound && gameObject.CompareTag("Triggerzone"))
+        if (transform.position.x > leftBound && gameObject.CompareTag("Money"))
         {
             Destroy(gameObject);
+            print("Destroyed cash");
         }
+     
     }
 }

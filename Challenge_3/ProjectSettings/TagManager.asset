@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Money
+  - Bomb
+  - Background
+  - Obstacle
+  - Ground
+  - Ceiling
   layers:
   - Default
   - TransparentFX

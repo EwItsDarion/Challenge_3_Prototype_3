@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/* Darion Jeffries
+ * SpinObjectsX
+ * Challenge 3
+ * Makes the objects spin
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
